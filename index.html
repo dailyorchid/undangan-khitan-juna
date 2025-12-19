@@ -97,6 +97,26 @@
       padding-bottom: 30px;
     }
   </style>
+
+<script>
+  // Ambil nama tamu dari URL ?to=
+  document.addEventListener('DOMContentLoaded', function () {
+    const params = new URLSearchParams(window.location.search);
+    const nama = params.get('to');
+    if (nama) {
+      const el = document.getElementById('namaTamu');
+      el.textContent = decodeURIComponent(nama.replace(/\+/g, ' '));
+    }
+  });
+
+  // Autoplay musik (aman untuk WA)
+  function playMusic() {
+    const audio = document.getElementById('bgMusic');
+    audio.play().catch(()=>{});
+    document.removeEventListener('click', playMusic);
+  }
+  document.addEventListener('click', playMusic);
+</script>
 </head>
 <body>
 
@@ -105,8 +125,13 @@
     <!-- COVER GIF -->
     <img src="gif1.gif" alt="Cover Undangan" style="border-bottom:6px solid #c9a14a;">
 
+    <audio id="bgMusic" loop>
+      <source src="musik.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="section" style="background:linear-gradient(180deg,#ffffff,#f9f6ef);">
       <p style="letter-spacing:2px; text-transform:uppercase; font-size:12px; color:#8a6d2f;">Undangan Tasyakuran Khitan</p>
+      <p style="font-size:14px;margin-top:8px;">Kepada Yth:<br><strong id="namaTamu">Bapak / Ibu / Saudara/i</strong></p>
       <h1>Arjuna Muhammad Narendraa</h1>
       <div class="divider"></div>
       <p>Dengan memohon rahmat dan ridho Allah SWT,<br>
@@ -146,8 +171,9 @@
     <img src="gif4.gif" alt="Penutup">
 
     <div class="section footer">
+      <a class="btn" href="https://maps.app.goo.gl/iraS53Ae36zYn2vB7" target="_blank" style="background:#c9a14a;margin-bottom:12px;display:inline-block;">📍 Buka Google Maps</a><br>
       <a class="btn" href="https://wa.me/?text=InsyaAllah%20saya%20akan%20hadir" target="_blank">💬 Konfirmasi via WhatsApp</a>
-      <p style="margin-top:16px;">Keluarga Besar<br><strong>Bapak & Ibu Juna</strong></p>
+      <p style="margin-top:16px;"><br><strong></strong></p>
     </div>
 
   </div>
